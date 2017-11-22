@@ -1,9 +1,10 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { IEvent } from "./shared/event.model";
 
 @Component({
   selector: 'event-thumbnail',
   template: `
-  <div class="card" style="width: 20rem;">
+  <div class="card" style="width: 20rem;" [routerLink]="['/events', event.id]">
     <div class="card-body">
       <h4 class="card-title">{{ event.name }}</h4>
       <div class="card-text">
@@ -46,7 +47,7 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
   `]
 })
 export class EventThumbnailComponent {
-  @Input() event: any;
+  @Input() event: IEvent;
   @Output() eventClick = new EventEmitter();
 
   someProperty: string = 'some value';
