@@ -2,16 +2,21 @@
 <hr>
 <div class="col-md-4">
   <form #varLoginForm="ngForm" (ngSubmit)="login(varLoginForm.value)" autocomplete="off">
-    <div class="form-group" >
+    <div class="form-group">
       <label for="userName">User Name:</label>
-      <input (ngModel)="userName" name="userName" id="userName" type="text" class="form-control" placeholder="User Name..." />
+      <em *ngIf="varLoginForm.controls.userName?.invalid && (varLoginForm.controls.userName?.touched || mouseoverLogin)">Required</em>
+      <input (ngModel)="userName" name="userName" id="userName" type="text" class="form-control" placeholder="User Name..." required/>
     </div>
-    <div class="form-group" >
+    <div class="form-group">
       <label for="password">Password:</label>
-      <input (ngModel)="password" name="password" id="password" type="password" class="form-control"placeholder="Password..." />
+      <em *ngIf="varLoginForm.controls.password?.invalid && (varLoginForm.controls.password?.touched || mouseoverLogin)">Required</em>
+      <input (ngModel)="password" name="password" id="password" type="password" class="form-control" placeholder="Password..."
+        required/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Login</button>
-    <button type="button" class="btn btn-default">Cancel</button>
+    <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
+      <button type="submit" class="btn btn-primary" [disabled]="varLoginForm.invalid">Login</button>
+    </span>
+    <button type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
   </form>
 </div>

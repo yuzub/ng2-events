@@ -29,7 +29,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" *ngIf="!authService.isAuthenticated()" [routerLink]="['user/login']">Login</a>
-        <a class="nav-link" [routerLink]="['user/profile']">Welcome User</a>
+        <a class="nav-link" *ngIf="authService.isAuthenticated()" [routerLink]="['user/profile']">Welcome {{authService.currentUser.firstName}}</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
